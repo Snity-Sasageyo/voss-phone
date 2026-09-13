@@ -3,21 +3,46 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>dump</title>
+    <title>phone</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <canvas id="c"></canvas>
-    <div id="w">
-      <div id="hd">mara voss</div>
-      <nav id="n">
-        <button class="tb on" data-k="msg">msgs</button>
-        <button class="tb" data-k="nts">notes</button>
-        <button class="tb" data-k="phs">pics</button>
-        <button class="tb" data-k="cal">cal</button>
-      </nav>
-      <div id="v"></div>
-      <div id="ft">pin: 0317</div>
+    <div id="out">
+      <div id="p">
+        <div id="top">
+          <span id="clk"></span>
+          <span id="car">no service</span>
+          <span id="bat">84%</span>
+        </div>
+
+        <div id="lk">
+          <div id="tm"></div>
+          <div id="dt"></div>
+          <div id="hint">passcode hint: the day everything stopped</div>
+          <div id="dots">
+            <span class="d"></span>
+            <span class="d"></span>
+            <span class="d"></span>
+            <span class="d"></span>
+          </div>
+          <div id="pad"></div>
+        </div>
+
+        <div id="hm" class="off">
+          <div id="grid"></div>
+        </div>
+
+        <div id="ap" class="off">
+          <div id="bar">
+            <button id="back">home</button>
+            <div id="ttl"></div>
+            <span></span>
+          </div>
+          <div id="body"></div>
+        </div>
+
+        <div id="bar2"></div>
+      </div>
     </div>
     <script src="app.js"></script>
   </body>
