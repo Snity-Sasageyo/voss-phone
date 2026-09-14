@@ -10,26 +10,106 @@
     <div id="out">
       <div id="p">
         <div id="top">
-          <span id="clk"></span>
-          <span id="car">no service</span>
-          <span id="bat">84%</span>
+          <span id="clk">03:17</span>
+          <span id="mid">
+            <span class="sig"><i></i><i></i><i></i><i></i></span>
+            <span id="car">NO SVC</span>
+          </span>
+          <span id="bat"><span id="bfill"></span></span>
         </div>
 
         <div id="lk">
-          <div id="tm"></div>
-          <div id="dt"></div>
+          <div id="tm">03:17</div>
+          <div id="dt">Saturday March 17</div>
           <div id="hint">passcode hint: the day everything stopped</div>
+
+          <div id="ntf">
+            <span class="app">messages</span>
+            <span class="tx">1 new message</span>
+          </div>
+
           <div id="dots">
             <span class="d"></span>
             <span class="d"></span>
             <span class="d"></span>
             <span class="d"></span>
           </div>
-          <div id="pad"></div>
+
+          <div id="pad">
+            <button class="key" data-k="1">
+              <span class="n">1</span><span class="s"></span>
+            </button>
+            <button class="key" data-k="2">
+              <span class="n">2</span><span class="s">ABC</span>
+            </button>
+            <button class="key" data-k="3">
+              <span class="n">3</span><span class="s">DEF</span>
+            </button>
+            <button class="key" data-k="4">
+              <span class="n">4</span><span class="s">GHI</span>
+            </button>
+            <button class="key" data-k="5">
+              <span class="n">5</span><span class="s">JKL</span>
+            </button>
+            <button class="key" data-k="6">
+              <span class="n">6</span><span class="s">MNO</span>
+            </button>
+            <button class="key" data-k="7">
+              <span class="n">7</span><span class="s">PQRS</span>
+            </button>
+            <button class="key" data-k="8">
+              <span class="n">8</span><span class="s">TUV</span>
+            </button>
+            <button class="key" data-k="9">
+              <span class="n">9</span><span class="s">WXYZ</span>
+            </button>
+            <button class="key empty"></button>
+            <button class="key" data-k="0">
+              <span class="n">0</span><span class="s"></span>
+            </button>
+            <button class="key" data-k="del">
+              <span class="n">⌫</span><span class="s"></span>
+            </button>
+          </div>
         </div>
 
         <div id="hm" class="off">
-          <div id="grid"></div>
+          <div id="grid">
+            <button class="ic" data-a="msg" data-n="messages">
+              <span class="g c1">✉<b class="bdg">1</b></span>
+              <span class="lb">messages</span>
+            </button>
+
+            <button class="ic" data-a="pic" data-n="photos">
+              <span class="g c2">▣</span>
+              <span class="lb">photos</span>
+            </button>
+
+            <button class="ic" data-a="not" data-n="notes">
+              <span class="g c3">✎</span>
+              <span class="lb">notes</span>
+            </button>
+
+            <button class="ic" data-a="mem" data-n="voice memos">
+              <span class="g c4">♪</span>
+              <span class="lb">voice memos</span>
+            </button>
+
+            <button class="ic" data-a="cal" data-n="calendar">
+              <span class="g c5">▦</span>
+              <span class="lb">calendar</span>
+            </button>
+
+            <button class="ic" data-a="set" data-n="settings">
+              <span class="g c6">✧</span>
+              <span class="lb">settings</span>
+            </button>
+
+            <button class="ic" data-a="cam" data-n="camera">
+              <span class="g c7">◉</span>
+              <span class="lb">camera</span>
+            </button>
+          </div>
         </div>
 
         <div id="ap" class="off">
@@ -38,12 +118,119 @@
             <div id="ttl"></div>
             <span></span>
           </div>
-          <div id="body"></div>
+
+          <div id="body">
+            <div id="pmsg" class="pane off">
+              <div class="card list">
+                <div class="row">
+                  <span class="av"></span
+                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span
+                  ><span class="time"></span>
+                </div>
+                <div class="row">
+                  <span class="av"></span
+                  ><span class="txt"><i class="w2"></i><i class="w1"></i></span
+                  ><span class="time"></span>
+                </div>
+                <div class="row bad">
+                  <span class="av"></span
+                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span
+                  ><span class="time"></span>
+                </div>
+                <div class="row">
+                  <span class="av"></span
+                  ><span class="txt"><i class="w2"></i><i class="w1"></i></span
+                  ><span class="time"></span>
+                </div>
+              </div>
+            </div>
+
+            <div id="ppic" class="pane off">
+              <div class="card grid6">
+                <span class="thumb"></span>
+                <span class="thumb"></span>
+                <span class="thumb"></span>
+                <span class="thumb"></span>
+                <span class="thumb"></span>
+                <span class="thumb"></span>
+              </div>
+            </div>
+
+            <div id="pnot" class="pane off">
+              <div class="card lines">
+                <div class="note-line">
+                  <i class="w1"></i><i class="w2"></i>
+                </div>
+                <div class="note-line">
+                  <i class="w2"></i><i class="w1"></i>
+                </div>
+                <div class="note-line">
+                  <i class="w1"></i><i class="w2"></i>
+                </div>
+              </div>
+            </div>
+
+            <div id="pmem" class="pane off">
+              <div class="card waves">
+                <div class="wave">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+                  ><i></i><i></i><i></i>
+                </div>
+                <div class="wave">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+                  ><i></i><i></i><i></i>
+                </div>
+              </div>
+            </div>
+
+            <div id="pcal" class="pane off">
+              <div class="card calrows">
+                <div class="crow">
+                  <span class="cd">12</span
+                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span>
+                </div>
+                <div class="crow">
+                  <span class="cd">15</span
+                  ><span class="txt"><i class="w2"></i><i class="w1"></i></span>
+                </div>
+                <div class="crow rd">
+                  <span class="cd">17</span
+                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <div id="pset" class="pane off">
+              <div class="card setrows">
+                <div class="srow">
+                  <i class="sl"></i><span class="sw"></span>
+                </div>
+                <div class="srow">
+                  <i class="sl"></i><span class="sw"></span>
+                </div>
+                <div class="srow bad">
+                  <i class="sl"></i><span class="sw"></span>
+                </div>
+                <div class="srow">
+                  <i class="sl"></i><span class="sw"></span>
+                </div>
+              </div>
+            </div>
+
+            <div id="pcam" class="pane off">
+              <div class="card cambox">
+                <span class="camtxt">camera unavailable</span>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <div id="fx"></div>
         <div id="bar2"></div>
       </div>
     </div>
+
     <script src="app.js"></script>
   </body>
 </html>
+
