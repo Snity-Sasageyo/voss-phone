@@ -18,7 +18,7 @@
           <span id="bat"><span id="bfill"></span></span>
         </div>
 
-        <div id="lk">
+        <div id="lk" class="scr on">
           <div id="tm">03:17</div>
           <div id="dt">Saturday March 17</div>
           <div id="hint">passcode hint: the day everything stopped</div>
@@ -73,7 +73,7 @@
           </div>
         </div>
 
-        <div id="hm" class="off">
+        <div id="hm" class="scr">
           <div id="grid">
             <button class="ic" data-a="msg" data-n="messages">
               <span class="g c1">✉<b class="bdg">1</b></span>
@@ -112,7 +112,7 @@
           </div>
         </div>
 
-        <div id="ap" class="off">
+        <div id="ap" class="scr">
           <div id="bar">
             <button id="back">home</button>
             <div id="ttl"></div>
@@ -120,106 +120,113 @@
           </div>
 
           <div id="body">
-            <div id="pmsg" class="pane off">
-              <div class="card list">
-                <div class="row">
-                  <span class="av"></span
-                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span
-                  ><span class="time"></span>
+            <div id="pmsg" class="pane">
+              <div id="mlist" class="listbox"></div>
+
+              <div id="mth" class="hid">
+                <div id="mhead">
+                  <button id="mback">list</button>
+                  <div id="mname"></div>
+                  <span></span>
                 </div>
-                <div class="row">
-                  <span class="av"></span
-                  ><span class="txt"><i class="w2"></i><i class="w1"></i></span
-                  ><span class="time"></span>
+                <div id="mbubs"></div>
+              </div>
+            </div>
+
+            <div id="ppic" class="pane">
+              <div id="gal"></div>
+
+              <div id="vw" class="hid">
+                <div id="vbar">
+                  <button id="vback">gallery</button>
+                  <span></span>
                 </div>
-                <div class="row bad">
-                  <span class="av"></span
-                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span
-                  ><span class="time"></span>
+                <div id="vimg"></div>
+                <div id="vcap"></div>
+                <div id="vtime"></div>
+                <div id="vnote"></div>
+              </div>
+            </div>
+
+            <div id="pnot" class="pane">
+              <div id="nlist" class="listbox"></div>
+
+              <div id="nview" class="hid">
+                <div id="nbar">
+                  <button id="nback">notes</button>
+                  <div id="ntitle"></div>
+                  <span></span>
                 </div>
-                <div class="row">
-                  <span class="av"></span
-                  ><span class="txt"><i class="w2"></i><i class="w1"></i></span
-                  ><span class="time"></span>
+                <div id="nbody"></div>
+              </div>
+            </div>
+
+            <div id="pmem" class="pane">
+              <div class="card static">
+                <div class="memo">
+                  <span class="mtitle">memo 1</span>
+                  <span class="mtime">Mar 14 • 2:14 AM</span>
+                  <span class="mtxt"
+                    >It moves when the lights are off. I recorded it this time.
+                    I know I did.</span
+                  >
+                </div>
+
+                <div class="memo bad">
+                  <span class="mtitle">memo 2</span>
+                  <span class="mtime">Mar 17 • 3:17 AM</span>
+                  <span class="mtxt"
+                    >If this stops, do not look for me. Do not look under the
+                    bed.</span
+                  >
                 </div>
               </div>
             </div>
 
-            <div id="ppic" class="pane off">
-              <div class="card grid6">
-                <span class="thumb"></span>
-                <span class="thumb"></span>
-                <span class="thumb"></span>
-                <span class="thumb"></span>
-                <span class="thumb"></span>
-                <span class="thumb"></span>
-              </div>
-            </div>
-
-            <div id="pnot" class="pane off">
-              <div class="card lines">
-                <div class="note-line">
-                  <i class="w1"></i><i class="w2"></i>
+            <div id="pcal" class="pane">
+              <div class="card static">
+                <div class="ev">
+                  <span class="evd">12</span
+                  ><span class="evt">dinner with ben</span>
                 </div>
-                <div class="note-line">
-                  <i class="w2"></i><i class="w1"></i>
+                <div class="ev rd">
+                  <span class="evd">14</span
+                  ><span class="evt">heard it again. 2:14 AM.</span>
                 </div>
-                <div class="note-line">
-                  <i class="w1"></i><i class="w2"></i>
+                <div class="ev">
+                  <span class="evd">15</span
+                  ><span class="evt">buy new locks</span>
                 </div>
-              </div>
-            </div>
-
-            <div id="pmem" class="pane off">
-              <div class="card waves">
-                <div class="wave">
-                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
-                  ><i></i><i></i><i></i>
+                <div class="ev rd">
+                  <span class="evd">17</span
+                  ><span class="evt">it comes at 3:17</span>
                 </div>
-                <div class="wave">
-                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
-                  ><i></i><i></i><i></i>
+                <div class="ev rd">
+                  <span class="evd">17</span
+                  ><span class="evt">check the locks</span>
+                </div>
+                <div class="ev rd">
+                  <span class="evd">17</span
+                  ><span class="evt">don't sleep yet</span>
                 </div>
               </div>
             </div>
 
-            <div id="pcal" class="pane off">
-              <div class="card calrows">
-                <div class="crow">
-                  <span class="cd">12</span
-                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span>
-                </div>
-                <div class="crow">
-                  <span class="cd">15</span
-                  ><span class="txt"><i class="w2"></i><i class="w1"></i></span>
-                </div>
-                <div class="crow rd">
-                  <span class="cd">17</span
-                  ><span class="txt"><i class="w1"></i><i class="w2"></i></span>
-                </div>
+            <div id="pset" class="pane">
+              <div id="strows"></div>
+              <div id="stwarn">
+                last known location: 1148 harwick, apt 3<br />
+                device found: kitchen table<br />
+                door locked from inside<br />
+                no body recovered<br />
+                <span class="blink">second user session active</span>
               </div>
             </div>
 
-            <div id="pset" class="pane off">
-              <div class="card setrows">
-                <div class="srow">
-                  <i class="sl"></i><span class="sw"></span>
-                </div>
-                <div class="srow">
-                  <i class="sl"></i><span class="sw"></span>
-                </div>
-                <div class="srow bad">
-                  <i class="sl"></i><span class="sw"></span>
-                </div>
-                <div class="srow">
-                  <i class="sl"></i><span class="sw"></span>
-                </div>
-              </div>
-            </div>
-
-            <div id="pcam" class="pane off">
+            <div id="pcam" class="pane">
               <div class="card cambox">
-                <span class="camtxt">camera unavailable</span>
+                <span class="camtxt">no face detected</span>
+                <span class="camtxt2">second face detected</span>
               </div>
             </div>
           </div>
@@ -233,4 +240,3 @@
     <script src="app.js"></script>
   </body>
 </html>
-
