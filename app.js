@@ -25,6 +25,13 @@ let vcap = document.getElementById("vcap");
 let vtime = document.getElementById("vtime");
 let vnote = document.getElementById("vnote");
 
+let hf = document.getElementById("hf");
+let hfback = document.getElementById("hfback");
+let hflock = document.getElementById("hflock");
+let hfrev = document.getElementById("hfrev");
+let hfhint = document.getElementById("hfhint");
+let hfdots = document.querySelectorAll("#hfdots .d");
+
 let nlist = document.getElementById("nlist");
 let nview = document.getElementById("nview");
 let nback = document.getElementById("nback");
@@ -43,6 +50,9 @@ let val = "";
 let unlocked = false;
 let current = "lk";
 let curapp = null;
+
+let hfval = "";
+let hfunlocked = false;
 
 let msgs = [
   {
@@ -312,6 +322,89 @@ document.querySelectorAll(".key").forEach(function (k) {
   };
 });
 
+function drawhf() {
+  for (let i = 0; i < hfdots.length; i++) {
+    if (i < hfval.length) {
+      hfdots[i].classList.add("on");
+    } else {
+      hfdots[i].classList.remove("on");
+    }
+  }
+}
+
+function hftry() {
+  if (hfval == "0317") {
+    hfunlocked = true;
+    hflock.classList.add("hid");
+    hfrev.classList.remove("hid");
+
+    let locktile = document.querySelector(".ph.lock");
+    if (locktile) {
+      locktile.classList.add("open");
+      let tx = locktile.querySelector(".lktx");
+      if (tx) tx.textContent = "open";
+    }
+
+    p.classList.add("flick");
+    setTimeout(function () {
+      p.classList.remove("flick");
+    }, 160);
+  } else {
+    hflock.classList.add("shake");
+    hfhint.textContent = "it comes at 3:17";
+    setTimeout(function () {
+      hflock.classList.remove("shake");
+    }, 350);
+    hfval = "";
+    drawhf();
+  }
+}
+
+function hfpress(x) {
+  if (hfunlocked) return;
+
+  if (x == "del") {
+    hfval = hfval.slice(0, -1);
+  } else if (hfval.length < 4) {
+    hfval += x;
+  }
+
+  drawhf();
+
+  if (hfval.length == 4) {
+    setTimeout(hftry, 180);
+  }
+}
+
+document.querySelectorAll(".hkey").forEach(function (k) {
+  k.onclick = function () {
+    hfpress(k.dataset.h);
+  };
+});
+
+function openhf() {
+  gal.classList.add("hid");
+  vw.classList.add("hid");
+  hf.classList.remove("hid");
+
+  if (hfunlocked) {
+    hflock.classList.add("hid");
+    hfrev.classList.remove("hid");
+  } else {
+    hflock.classList.remove("hid");
+    hfrev.classList.add("hid");
+    hfval = "";
+    drawhf();
+  }
+}
+
+function closehf() {
+  hf.classList.add("hid");
+  gal.classList.remove("hid");
+}
+
+hfback.onclick = closehf;
+
 document.addEventListener("keydown", function (e) {
   if (!unlocked && current == "lk") {
     if (e.key.length == 1 && e.key >= "0" && e.key <= "9") {
@@ -323,8 +416,28 @@ document.addEventListener("keydown", function (e) {
     }
   }
 
-  if (unlocked && current == "ap" && e.key == "Escape") {
-    home();
+  if (unlocked && current == "ap") {
+    if (
+      curapp == "pic" &&
+      !hf.classList.contains("hid") &&
+      !hflock.classList.contains("hid")
+    ) {
+      if (e.key.length == 1 && e.key >= "0" && e.key <= "9") {
+        hfpress(e.key);
+      }
+
+      if (e.key == "Backspace") {
+        hfpress("del");
+      }
+    }
+
+    if (e.key == "Escape") {
+      if (!hf.classList.contains("hid")) {
+        closehf();
+      } else {
+        home();
+      }
+    }
   }
 });
 
@@ -432,6 +545,15 @@ function drawpics() {
 
     gal.appendChild(d);
   }
+
+  let locktile = document.createElement("div");
+  locktile.className = "ph lock" + (hfunlocked ? " open" : "");
+  locktile.innerHTML =
+    '<span class="lkic">✕</span><span class="lktx">' +
+    (hfunlocked ? "open" : "hidden") +
+    "</span>";
+  locktile.onclick = openhf;
+  gal.appendChild(locktile);
 }
 
 function openpic(i) {
@@ -443,6 +565,7 @@ function openpic(i) {
   vnote.textContent = ph.note || "";
 
   gal.classList.add("hid");
+  hf.classList.add("hid");
   vw.classList.remove("hid");
 }
 
@@ -547,6 +670,7 @@ function openapp(a, n) {
 
   if (a == "pic") {
     vw.classList.add("hid");
+    hf.classList.add("hid");
     gal.classList.remove("hid");
   }
 
