@@ -10,6 +10,8 @@ let dt = document.getElementById("dt");
 let p = document.getElementById("p");
 let bat = document.getElementById("bat");
 let bar2 = document.getElementById("bar2");
+let toast = document.getElementById("toast");
+let end = document.getElementById("end");
 
 let mlist = document.getElementById("mlist");
 let mth = document.getElementById("mth");
@@ -53,6 +55,11 @@ let curapp = null;
 
 let hfval = "";
 let hfunlocked = false;
+
+let earlydone = false;
+let finstarted = false;
+let ended = false;
+let tmo = null;
 
 let msgs = [
   {
@@ -264,6 +271,7 @@ let stg = [
 ];
 
 function show(id) {
+  if (ended) return;
   if (!scr[id]) return;
 
   for (let k in scr) {
@@ -285,11 +293,14 @@ function draw() {
 }
 
 function trycode() {
+  if (ended) return;
+
   if (val == "0317") {
     unlocked = true;
     val = "";
     draw();
     show("hm");
+    setTimeout(earlyevent, 12000);
   } else {
     lk.classList.add("shake");
     setTimeout(function () {
@@ -301,6 +312,8 @@ function trycode() {
 }
 
 function addkey(x) {
+  if (ended) return;
+
   if (!unlocked && current == "lk") {
     if (x == "del") {
       val = val.slice(0, -1);
@@ -322,6 +335,112 @@ document.querySelectorAll(".key").forEach(function (k) {
   };
 });
 
+function showtoast(msg) {
+  if (ended) return;
+
+  toast.textContent = msg;
+  toast.classList.add("show");
+
+  clearTimeout(tmo);
+  tmo = setTimeout(function () {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+function addunk(msg) {
+  let u = msgs[3];
+  u.l.push({ f: "in", t: msg, d: "Now", bad: 1 });
+  u.prev = msg;
+  u.un = 1;
+  drawmsgs();
+}
+
+function hardflick() {
+  if (ended) return;
+
+  p.classList.add("flick");
+  setTimeout(function () {
+    p.classList.remove("flick");
+  }, 140);
+
+  setTimeout(function () {
+    p.classList.add("flick");
+    setTimeout(function () {
+      p.classList.remove("flick");
+    }, 120);
+  }, 240);
+}
+
+function earlyevent() {
+  if (finstarted || earlydone || ended) return;
+
+  earlydone = true;
+  addunk("Why are you looking through her things?");
+  showtoast("(317) Why are you looking through her things?");
+  hardflick();
+  bat.classList.add("low");
+}
+
+function forcecam() {
+  if (ended) return;
+
+  curapp = "cam";
+  ttl.textContent = "camera";
+
+  let pans = document.querySelectorAll(".pane");
+  for (let i = 0; i < pans.length; i++) {
+    pans[i].classList.remove("on");
+  }
+
+  let target = document.getElementById("pcam");
+  if (target) {
+    target.classList.add("on");
+    target.classList.add("live");
+  }
+
+  show("ap");
+}
+
+function finale() {
+  if (finstarted || ended) return;
+
+  finstarted = true;
+
+  addunk("You found it.");
+  showtoast("(317) You found it.");
+  hardflick();
+
+  setTimeout(function () {
+    bat.classList.remove("low");
+    bat.classList.add("dead");
+    hardflick();
+  }, 1400);
+
+  setTimeout(function () {
+    addunk("Now it knows you are here.");
+    showtoast("(317) Now it knows you are here.");
+  }, 2400);
+
+  setTimeout(function () {
+    forcecam();
+    hardflick();
+  }, 4200);
+
+  setTimeout(showend, 6800);
+}
+
+function showend() {
+  if (ended) return;
+
+  ended = true;
+  toast.classList.remove("show");
+  end.classList.add("on");
+}
+
+end.onclick = function () {
+  location.reload();
+};
+
 function drawhf() {
   for (let i = 0; i < hfdots.length; i++) {
     if (i < hfval.length) {
@@ -333,6 +452,8 @@ function drawhf() {
 }
 
 function hftry() {
+  if (ended) return;
+
   if (hfval == "0317") {
     hfunlocked = true;
     hflock.classList.add("hid");
@@ -345,10 +466,8 @@ function hftry() {
       if (tx) tx.textContent = "open";
     }
 
-    p.classList.add("flick");
-    setTimeout(function () {
-      p.classList.remove("flick");
-    }, 160);
+    hardflick();
+    setTimeout(finale, 2400);
   } else {
     hflock.classList.add("shake");
     hfhint.textContent = "it comes at 3:17";
@@ -361,7 +480,7 @@ function hftry() {
 }
 
 function hfpress(x) {
-  if (hfunlocked) return;
+  if (ended || hfunlocked) return;
 
   if (x == "del") {
     hfval = hfval.slice(0, -1);
@@ -383,6 +502,8 @@ document.querySelectorAll(".hkey").forEach(function (k) {
 });
 
 function openhf() {
+  if (ended) return;
+
   gal.classList.add("hid");
   vw.classList.add("hid");
   hf.classList.remove("hid");
@@ -399,6 +520,8 @@ function openhf() {
 }
 
 function closehf() {
+  if (ended) return;
+
   hf.classList.add("hid");
   gal.classList.remove("hid");
 }
@@ -406,6 +529,8 @@ function closehf() {
 hfback.onclick = closehf;
 
 document.addEventListener("keydown", function (e) {
+  if (ended) return;
+
   if (!unlocked && current == "lk") {
     if (e.key.length == 1 && e.key >= "0" && e.key <= "9") {
       addkey(e.key);
@@ -496,6 +621,8 @@ function drawmsgs() {
 }
 
 function openmsg(i) {
+  if (ended) return;
+
   let m = msgs[i];
 
   if (m.un) {
@@ -526,6 +653,7 @@ function openmsg(i) {
 }
 
 mback.onclick = function () {
+  if (ended) return;
   mth.classList.add("hid");
   mlist.classList.remove("hid");
 };
@@ -557,6 +685,8 @@ function drawpics() {
 }
 
 function openpic(i) {
+  if (ended) return;
+
   let ph = pics[i];
 
   vimg.className = ph.k + (ph.bad ? " bad" : "");
@@ -570,6 +700,7 @@ function openpic(i) {
 }
 
 vback.onclick = function () {
+  if (ended) return;
   vw.classList.add("hid");
   gal.classList.remove("hid");
 };
@@ -603,6 +734,8 @@ function drawnotes() {
 }
 
 function opennote(i) {
+  if (ended) return;
+
   let n = nts[i];
 
   ntitle.textContent = n.t;
@@ -619,6 +752,7 @@ function opennote(i) {
 }
 
 nback.onclick = function () {
+  if (ended) return;
   nview.classList.add("hid");
   nlist.classList.remove("hid");
 };
@@ -648,7 +782,7 @@ function drawset() {
 }
 
 function openapp(a, n) {
-  if (!unlocked) return;
+  if (!unlocked || ended || finstarted) return;
 
   curapp = a;
   ttl.textContent = n;
@@ -683,7 +817,7 @@ function openapp(a, n) {
 }
 
 function home() {
-  if (!unlocked) return;
+  if (!unlocked || ended || finstarted) return;
 
   curapp = null;
   show("hm");
@@ -746,7 +880,7 @@ tick();
 setInterval(tick, 10000);
 
 setInterval(function () {
-  if (Math.random() < 0.16) {
+  if (!ended && Math.random() < 0.16) {
     p.classList.add("flick");
     setTimeout(function () {
       p.classList.remove("flick");
@@ -755,5 +889,7 @@ setInterval(function () {
 }, 4500);
 
 setTimeout(function () {
-  bat.classList.add("low");
-}, 14000);
+  if (!finstarted && !ended && !earlydone) {
+    bat.classList.add("low");
+  }
+}, 16000);

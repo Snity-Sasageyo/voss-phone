@@ -149,6 +149,17 @@ body {
   box-shadow: 0 0 8px rgba(255, 60, 80, 0.4);
 }
 
+#bat.dead {
+  border-color: #ff5566;
+  box-shadow: 0 0 10px rgba(255, 60, 80, 0.35);
+}
+
+#bat.dead #bfill {
+  width: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .scr {
   position: absolute;
   top: 44px;
@@ -1013,6 +1024,22 @@ body {
   pointer-events: none;
 }
 
+#pcam.live .cambox {
+  border-color: rgba(255, 60, 90, 0.22);
+  box-shadow: 0 0 28px rgba(255, 0, 60, 0.08) inset;
+}
+
+#pcam.live .camtxt {
+  color: #ff6d84;
+  animation: none;
+}
+
+#pcam.live .camtxt2 {
+  opacity: 1;
+  animation: none;
+  text-shadow: 0 0 12px rgba(255, 60, 90, 0.4);
+}
+
 #fx {
   position: absolute;
   inset: 0;
@@ -1027,6 +1054,95 @@ body {
     ),
     radial-gradient(circle at center, transparent 58%, rgba(0, 0, 0, 0.34) 100%);
   mix-blend-mode: screen;
+}
+
+#toast {
+  position: absolute;
+  top: 52px;
+  left: 14px;
+  right: 14px;
+  z-index: 65;
+  background: rgba(20, 10, 16, 0.92);
+  border: 1px solid rgba(255, 60, 90, 0.18);
+  color: #ffc2cf;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  pointer-events: none;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: none;
+}
+
+#end {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s;
+  cursor: pointer;
+}
+
+#end.on {
+  opacity: 1;
+  visibility: visible;
+}
+
+#endin {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+
+.el {
+  opacity: 0;
+  font-size: 13px;
+  color: #cfc9dd;
+  letter-spacing: 0.6px;
+}
+
+.e4 {
+  color: #ff6d84;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#end.on .e1 {
+  animation: eap 0.9s ease 0.4s forwards;
+}
+
+#end.on .e2 {
+  animation: eap 0.9s ease 1.7s forwards;
+}
+
+#end.on .e3 {
+  animation: eap 0.9s ease 3s forwards;
+}
+
+#end.on .e4 {
+  animation:
+    eap 0.7s ease 4.5s forwards,
+    cf 2.2s infinite 4.5s;
 }
 
 #bar2 {
@@ -1255,3 +1371,13 @@ body {
   }
 }
 
+@keyframes eap {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
