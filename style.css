@@ -199,7 +199,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 52px;
+  padding-top: 44px;
   z-index: 5;
 }
 
@@ -213,17 +213,34 @@ body {
 
 #dt {
   color: #9f96b8;
-  margin: 8px 0 18px;
+  margin: 8px 0 14px;
   font-size: 14px;
 }
 
 #hint {
-  font-size: 11px;
-  color: #6f6588;
-  margin-bottom: 22px;
+  font-size: 12px;
+  color: #b9a8d8;
+  margin-bottom: 10px;
   text-align: center;
   padding: 0 20px;
   animation: hf 2.8s infinite;
+}
+
+#hb {
+  background: none;
+  border: 1px solid #333346;
+  color: #8f86a8;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 10px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: all 0.14s ease;
+}
+
+#hb:hover {
+  color: #fff;
+  border-color: #6d6b83;
 }
 
 #ntf {
@@ -237,7 +254,7 @@ body {
   justify-content: space-between;
   font-size: 11px;
   color: #b9b3cc;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 
@@ -252,7 +269,7 @@ body {
 #dots {
   display: flex;
   gap: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .d {
@@ -1145,6 +1162,82 @@ body {
     cf 2.2s infinite 4.5s;
 }
 
+#help {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(3px);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s;
+  pointer-events: none;
+}
+
+#help.on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#hin {
+  width: 86%;
+  max-width: 280px;
+  max-height: 82%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(10, 10, 16, 0.82);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+#httl {
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.hl {
+  font-size: 12px;
+  color: #b8b3cc;
+  line-height: 1.45;
+}
+
+.hl b {
+  color: #ff8ba0;
+  font-weight: 600;
+}
+
+#go {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #43325f, #281c40);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 11px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  transition:
+    transform 0.14s ease,
+    filter 0.14s ease;
+}
+
+#go:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.12);
+}
+
 #bar2 {
   position: absolute;
   bottom: 8px;
@@ -1214,7 +1307,7 @@ body {
 
 #hfhint {
   font-size: 11px;
-  color: #6f6588;
+  color: #b9a8d8;
   margin-bottom: 16px;
   min-height: 14px;
   text-align: center;

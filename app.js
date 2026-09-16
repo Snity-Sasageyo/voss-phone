@@ -12,6 +12,9 @@ let bat = document.getElementById("bat");
 let bar2 = document.getElementById("bar2");
 let toast = document.getElementById("toast");
 let end = document.getElementById("end");
+let help = document.getElementById("help");
+let go = document.getElementById("go");
+let hb = document.getElementById("hb");
 
 let mlist = document.getElementById("mlist");
 let mth = document.getElementById("mth");
@@ -231,6 +234,13 @@ stop hearing things
 call mom back`,
   },
   {
+    t: "passcode",
+    p: "if i forget",
+    b: `0317
+the day everything stopped.
+hidden album too.`,
+  },
+  {
     t: "things i know",
     p: "it only moves when the lights are off",
     b: `it only moves when the lights are off
@@ -263,12 +273,26 @@ i think it's reading this over my shoulder now.`,
 let stg = [
   { l: "Airplane Mode", v: "OFF" },
   { l: "Wi-Fi", v: "harwick-3 (weak)" },
+  { l: "Passcode Hint", v: "0317" },
+  { l: "Hidden Album", v: "0317" },
   { l: "Bluetooth", v: "Connected: Unknown Device", bad: 1 },
   { l: "Battery", v: "4% - draining", bad: 1 },
   { l: "Storage", v: "63.9 / 64 GB", bad: 1 },
   { l: "Location", v: "Kitchen Table" },
   { l: "Active Users", v: "2", bad: 1 },
 ];
+
+function showhelp() {
+  if (ended) return;
+  help.classList.add("on");
+}
+
+function hidehelp() {
+  help.classList.remove("on");
+}
+
+go.onclick = hidehelp;
+hb.onclick = showhelp;
 
 function show(id) {
   if (ended) return;
@@ -470,7 +494,7 @@ function hftry() {
     setTimeout(finale, 2400);
   } else {
     hflock.classList.add("shake");
-    hfhint.textContent = "it comes at 3:17";
+    hfhint.textContent = "enter 0317";
     setTimeout(function () {
       hflock.classList.remove("shake");
     }, 350);
@@ -530,6 +554,13 @@ hfback.onclick = closehf;
 
 document.addEventListener("keydown", function (e) {
   if (ended) return;
+
+  if (help.classList.contains("on")) {
+    if (e.key == "Escape") {
+      hidehelp();
+    }
+    return;
+  }
 
   if (!unlocked && current == "lk") {
     if (e.key.length == 1 && e.key >= "0" && e.key <= "9") {
@@ -893,3 +924,4 @@ setTimeout(function () {
     bat.classList.add("low");
   }
 }, 16000);
+
